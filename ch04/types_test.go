@@ -1,4 +1,4 @@
-package ch04
+package main
 
 import (
 	"bytes"

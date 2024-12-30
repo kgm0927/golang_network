@@ -8,7 +8,6 @@ import (
 
 // 참고: window와 WSL(Windows Subsystem for Linux)은 unixgram 도메인 소켓을 지원하지 않는다.
 
-
 func streamingEchoServer(ctx context.Context, network string, addr string) (net.Addr, error) {
 
 	s, err := net.Listen(network, addr)
@@ -54,7 +53,7 @@ func streamingEchoServer(ctx context.Context, network string, addr string) (net.
 
 func datagramEchoServer(ctx context.Context, network string, addr string) (net.Addr, error) {
 
-	s, err := net.ListenPacket(network, addr)//#1
+	s, err := net.ListenPacket(network, addr) //#1
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +65,7 @@ func datagramEchoServer(ctx context.Context, network string, addr string) (net.A
 			_ = s.Close()
 		}()
 		if network == "unixgram" {
-			_ = os.Remove(addr)//#2
+			_ = os.Remove(addr) //#2
 		}
 
 		buf := make([]byte, 1024)
